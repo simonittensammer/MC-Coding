@@ -1,0 +1,8 @@
+name: buildHouse
+version: 0.1
+main: me.plugin.buildHouse.BuildHouse
+description: first Release
+api-version: 1.13
+commands:
+  build:
+    description: Summons a house
