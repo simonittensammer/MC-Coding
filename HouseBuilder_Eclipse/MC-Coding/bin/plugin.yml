@@ -1,0 +1,12 @@
+name: HouseBuilder
+version: 1.0
+main: mc_coding.houseBuilder.Main
+description: Builds Houses
+api-version: 1.13
+commands:
+  build:
+    description: builds houses
+  destroy:
+    description: destroys houses
+  listHouses:
+    description: lists houses
