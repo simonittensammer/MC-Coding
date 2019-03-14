@@ -1,21 +1,27 @@
 package buildHouse;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
+import net.minecraft.server.v1_13_R2.PacketPlayOutWorldParticles;
+import org.bukkit.*;
+import org.bukkit.craftbukkit.v1_13_R2.CraftWorld;
+import org.bukkit.inventory.ItemStack;
 
 public class House {
-	
+
 	private Location location;
 	private String[] blocks;
-	
+
 	private int width;
 	private int length;
 	private int height;
-	
+
 	static int totalId = 0;
 	private int id;
-	
-	public House(Location location, int width, int length, int height) {
+
+	private ItemStack itemData;
+
+	CraftWorld world = (CraftWorld) Bukkit.getWorlds().get(0);
+
+	public House(Location location, int width, int height, int length) {
 		this.location = location;
 		this.width = width;
 		this.length = length;
@@ -23,15 +29,8 @@ public class House {
 		blocks = new String[width * length * (height + 1)];
 		totalId ++;
 		id = totalId;
+
 		int counter = 0;
-//		for(int x = 0; x < width; x++) {
-//			for(int y = 0; y < length; y++) {
-//				for(int z = 0; z < height; z++) {
-//					blocks[counter] = x + "," + y + "," + z + "," + "ACACIA_PLANKS";
-//					counter ++;
-//				}
-//			}
-//		}
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < length; y++) {
 				blocks[counter] =x + ",-1," + y + ",STONE_BRICKS";
@@ -49,7 +48,7 @@ public class House {
 						blocks[counter] = x + "," + z + "," + y + "," + "SPRUCE_PLANKS";
 					}else {
 						blocks[counter] = x + "," + z + "," + y + "," + "AIR";
-					}	
+					}
 					counter ++;
 				}
 			}
@@ -61,34 +60,36 @@ public class House {
 						blocks[counter] = x + "," + z + "," + y + "," + "SPRUCE_SLAB";
 					}else {
 						blocks[counter] = x + "," + z + "," + y + "," + "SPRUCE_PLANKS";
-					}	
+					}
 					counter ++;
 				}
 			}
 		}
-		
 	}
-	
+
 	public void destroy() {
 		for(int i = 0; i < blocks.length; i++) {
-			String[] block = blocks[i].split(",");	
+			String[] block = blocks[i].split(",");
+			itemData = new ItemStack(Material.getMaterial(block[3]));
 			location.add(Integer.parseInt(block[0]), Integer.parseInt(block[1]), Integer.parseInt(block[2])).getBlock().setType(Material.AIR);
+
+			if (Material.getMaterial(block[3]) != Material.AIR) {
+				this.getLocation().getWorld().spawnParticle(Particle.ITEM_CRACK, this.getLocation(), 10, 0.4, 0.5, 0.4, 0, itemData);
+			}
+
 			location.add(-Integer.parseInt(block[0]), -Integer.parseInt(block[1]), -Integer.parseInt(block[2]));
 		}
 	}
-	
+
 	public Location getLocation() {
 		return location;
 	}
-	
 	public String[] getBlocks() {
 		return blocks;
 	}
-	
 	public int getId() {
 		return id;
 	}
-	
 	public String getDimensions() {
 		return width + "x" + length + "x" + height;
 	}
