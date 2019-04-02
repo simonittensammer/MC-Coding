@@ -10,3 +10,5 @@ commands:
     description: destroys houses
   listHouses:
     description: lists houses
+  fillHouse:
+    description: fills houses with TNT

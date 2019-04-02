@@ -42,4 +42,8 @@ public class HouseManager {
             plugin.getServer().broadcastMessage("House " + ChatColor.RED + house.getId() + ChatColor.WHITE + ": " + ChatColor.YELLOW + house.getDimensions() + ChatColor.LIGHT_PURPLE + " x:" + house.getLocation().getBlockX() + " y:" + house.getLocation().getBlockY() + " z:" + house.getLocation().getBlockZ());
         }
     }
+
+    public House getHouse(int id){
+        return houses.get(id);
+    }
 }

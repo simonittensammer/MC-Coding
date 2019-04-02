@@ -77,6 +77,20 @@ public class House {
 		}
 	}
 
+	public void fill(){
+		for(int i = 0; i < blocks.length; i++) {
+
+			String[] block = this.getBlocks()[i].split(",");
+			itemData = new ItemStack(Material.getMaterial(block[3]));
+
+			if(Material.getMaterial(block[3]) == Material.AIR){
+				this.getLocation().add(Integer.parseInt(block[0]), Integer.parseInt(block[1]), Integer.parseInt(block[2])).getBlock().setType(Material.getMaterial("TNT"));
+				location.add(-Integer.parseInt(block[0]), -Integer.parseInt(block[1]), -Integer.parseInt(block[2]));
+			}
+		}
+
+	}
+
 	public Location getLocation() {
 		return location;
 	}

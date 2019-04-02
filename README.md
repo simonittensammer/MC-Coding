@@ -8,8 +8,11 @@ Builds a house of the chosen dimensions in front of the player. If **length** an
 - `/destroy <houseID>`
 Removes the house with the chosen **houseID** and deletes it from the list of houses.
 
-- `/listhouses`
+- `/listHouses`
 Lists all existing houses.
+
+- `/fillHouse <houseId>`
+Fills the house with the chosen **houseID** with TNT-blocks.
 
 ## Installation
 To install the plugin simply download the **buildHouse.jar** file from this repository and copy it into the **plugins** folder of your **Craft-Bukkit** server. If you need help setting up a **Craft-Bukkit** server, please visit [this](https://bukkit.gamepedia.com/Setting_up_a_server) page.

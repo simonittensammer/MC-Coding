@@ -65,6 +65,13 @@ public class Main extends JavaPlugin {
         if (commandLabel.equalsIgnoreCase("listHouses")) {
             houseManager.listHouses();
         }
+        if (commandLabel.equalsIgnoreCase("fillHouse")){
+            try{
+                houseManager.getHouse(Integer.parseInt(args[0])).fill();
+            } catch(Exception e){
+
+            }
+        }
         return true;
     }
 
