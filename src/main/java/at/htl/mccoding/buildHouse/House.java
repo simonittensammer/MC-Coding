@@ -91,6 +91,10 @@ public class House {
 
 	}
 
+	public String toString(){
+	    return location.getX() + "/" + location.getY() + "/" + location.getZ() + "/" + width + "/" + height + "/" + length;
+    }
+
 	public Location getLocation() {
 		return location;
 	}

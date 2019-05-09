@@ -26,6 +26,10 @@ public class HouseManager {
         }
     }
 
+    public void addHouse(House house){
+        houses.put(house.getId(), house);
+    }
+
     public void destroyHouse(int id) {
         if (houses.containsKey(id)) {
             houses.get(id).destroy();
@@ -45,5 +49,9 @@ public class HouseManager {
 
     public House getHouse(int id){
         return houses.get(id);
+    }
+
+    public HashMap<Integer, House> getHouses(){
+        return houses;
     }
 }
